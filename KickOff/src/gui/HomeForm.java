@@ -23,5 +23,9 @@ public class HomeForm extends Form{
         getToolbar().addCommandToSideMenu("Tournoi", null, (evt5) -> {
             new TournoiForm().show();
         });
+        
+            getToolbar().addCommandToSideMenu("Boutique", null, (evt5) -> {
+            new BoutiqueForm().start();
+                    });
     }
 }
