@@ -31,5 +31,9 @@ public class HomeForm extends Form{
                Storage.getInstance().clearCache();
             new LoginForm().show();});
                  
+        
+            getToolbar().addCommandToSideMenu("Boutique", null, (evt5) -> {
+            new BoutiqueForm().start();
+                    });
     }
 }
