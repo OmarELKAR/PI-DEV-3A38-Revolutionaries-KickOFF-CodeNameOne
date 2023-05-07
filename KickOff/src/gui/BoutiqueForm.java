@@ -4,6 +4,20 @@
  */
 package gui;
 
+import com.codename1.charts.ChartComponent;
+import com.codename1.charts.models.CategorySeries;
+import com.codename1.charts.models.MultipleCategorySeries;
+import com.codename1.charts.models.XYMultipleSeriesDataset;
+import com.codename1.charts.models.XYSeries;
+import com.codename1.charts.renderers.DefaultRenderer;
+import com.codename1.charts.renderers.SimpleSeriesRenderer;
+import com.codename1.charts.views.PieChart;
+
+import com.codename1.ui.Form;
+import com.codename1.ui.layouts.BorderLayout;
+
+
+
 import com.codename1.ui.Form;
 import entities.Produit;
 import static com.codename1.ui.CN.*;
@@ -31,6 +45,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.RoundBorder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import services.TwilioSMS;
@@ -72,6 +87,9 @@ public void init(Object context) {
         Dialog.show("Connection Error", "There was a networking error in the connection to " + err.getConnectionRequest().getUrl(), "OK", null);
     });        
 }
+
+
+
 
 
 public void start() {
