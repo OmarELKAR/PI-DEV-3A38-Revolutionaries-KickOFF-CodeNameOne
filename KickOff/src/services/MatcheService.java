@@ -61,7 +61,6 @@ public class MatcheService {
     
     public List<Matche> parseMatches(String jsonText){
         matches = new ArrayList<>();
-        TerrainService ts = TerrainService.getInstance();
         
         JSONParser jp = new JSONParser();
         try {
@@ -77,7 +76,6 @@ public class MatcheService {
                 m.setDate((String) item.get("date"));
                 m.setTime((String) item.get("time"));
                 m.setEtat((String) item.get("etat"));
-                m.setTerrain(ts.fetchTerrain((double) item.get("terrain")));
                 
                 matches.add(m);
             }
@@ -98,9 +96,6 @@ public class MatcheService {
         req.addArgument("date", m.getDate());
         req.addArgument("time", m.getTime());
         req.addArgument("etat", m.getEtat());
-        req.addArgument("terrain", String.valueOf(m.getTerrain().getId()));
-        
-        req.addRequestHeader("Debug", "true");
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -135,8 +130,7 @@ public class MatcheService {
     }
     
      public List<Matche> parseMatche(String jsonText){
-        
-        TerrainService ts = TerrainService.getInstance();
+
         matches = new ArrayList<>();
         JSONParser jp = new JSONParser();
         try {
@@ -152,7 +146,6 @@ public class MatcheService {
                 m.setDate((String) item.get("date"));
                 m.setTime((String) item.get("time"));
                 m.setEtat((String) item.get("etat"));
-                m.setTerrain(ts.fetchTerrain((double) item.get("terrain")));
                 List<String> team1 = new ArrayList<>();
                 for (Object o : (List<Object>) item.get("team1")) {
                     team1.add((String) o);

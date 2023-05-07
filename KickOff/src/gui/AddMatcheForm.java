@@ -19,12 +19,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.spinner.Picker;
 import entities.Matche;
-import entities.Terrain;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import services.MatcheService;
-import services.TerrainService;
 
 /**
  *
@@ -32,16 +27,12 @@ import services.TerrainService;
  */
 public class AddMatcheForm extends Form{
     
-        
     private TextField nameField;
     private TextField jmaxField;
     private Picker dateField;
     private Picker timeField;
-    private ComboBox<String> etatField;
-    private ComboBox<String> terrainField;
-    private MatcheService ms = MatcheService.getInstance();
-    private TerrainService ts = TerrainService.getInstance();
-    private HashMap<String, Terrain> terrainMap; // to map the selected terrain name to its corresponding Terrain object
+    private Picker etatField;
+    MatcheService ms = MatcheService.getInstance();
 
     public AddMatcheForm() {
         super("Add Match", new BoxLayout(BoxLayout.Y_AXIS));
@@ -52,33 +43,20 @@ public class AddMatcheForm extends Form{
         dateField.setType(Display.PICKER_TYPE_DATE);
         timeField = new Picker();
         timeField.setType(Display.PICKER_TYPE_TIME);
-        etatField = new ComboBox<>("Ouvert", "Privée");
+        ComboBox<String> etatField = new ComboBox<>("Ouvert", "Privée");
         etatField.setSelectedIndex(0);
-        
-        // Create the list of terrain names and the terrain map
-        List<Terrain> terrains = ts.fetchTerrains();
-        ArrayList<String> terrainNames = new ArrayList<>();
-        terrainMap = new HashMap<>();
-        for (Terrain terrain : terrains) {
-            terrainNames.add(terrain.getNom());
-            terrainMap.put(terrain.getNom(), terrain);
-        }
-        
-        // Create the terrain picker and set its model to the list of terrain names
-        terrainField = new ComboBox<>(terrainNames.toArray(new String[0]));
         
         addField("Name", nameField);
         addField("Jmax", jmaxField);
         addField("Date", dateField);
         addField("Time", timeField);
         addField("Etat", etatField);
-        addField("Terrain", terrainField);
+        
         
         Button addButton = new Button("Add");
         addButton.addActionListener((evt) -> {
-            Terrain selectedTerrain = terrainMap.get(terrainField.getSelectedItem()); // get the selected terrain object from the map
             
-            if (ms.addMatche(new Matche(nameField.getText(),Integer.parseInt(jmaxField.getText()), dateField.getText(), timeField.getText(), etatField.getSelectedItem(), selectedTerrain))) {
+            if (ms.addMatche(new Matche(nameField.getText(),Integer.parseInt(jmaxField.getText()), dateField.getText(), timeField.getText(), etatField.getSelectedItem()))) {
                 Dialog.show("Sucess", "Tast Inserted successfully", "Got it", null);
             }else {
                 Dialog.show("Failed", "Something Wrong! Try again", "Got it", null);
