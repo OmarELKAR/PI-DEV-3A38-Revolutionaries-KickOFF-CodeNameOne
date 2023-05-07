@@ -24,7 +24,7 @@ import services.MatcheService;
 public class showMatcheForm extends Form {
     MatcheService ms = MatcheService.getInstance();
     
-    public showMatcheForm(int id) {
+    public showMatcheForm(int id, String address) {
         super("Matche", BoxLayout.y());
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, (evt3) -> {
             new HomeForm().showBack();
@@ -33,13 +33,14 @@ public class showMatcheForm extends Form {
             new LoginForm().showBack();
         });
         for (Matche m : ms.showMatche(id)){
-            showM(m);
+            m.getTerrain().getAddressFromCoordinates();
+            System.out.println(m.getTerrain());
+
+            showM(m, address);
         }
     }
     
-    public void showM(Matche match){
-        Label idLabel = new Label("ID: " + match.getId());
-        this.add(idLabel);
+    public void showM(Matche match, String adr){
 
         Label nameLabel = new Label("Name: " + match.getName());
         this.add(nameLabel);
@@ -53,11 +54,16 @@ public class showMatcheForm extends Form {
         Label timeLabel = new Label("Time: " + match.getTime());
         this.add(timeLabel);
         
-        Label weatherLabel = new Label("Weather: ");
-        this.add(weatherLabel);
 
         Label etatLabel = new Label("Etat: " + match.getEtat());
         this.add(etatLabel);
+        
+        Label nomTerrainLabel = new Label("Terrain: " + match.getTerrain().getNom());
+        this.add(nomTerrainLabel);
+        
+        
+        Label addresseLabel = new Label("Adresse: " + adr);
+        this.add(addresseLabel);
         
 
         SpanLabel team1Label = new SpanLabel("Team 1: " + match.getTeam1());
