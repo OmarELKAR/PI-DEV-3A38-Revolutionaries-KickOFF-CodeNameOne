@@ -278,6 +278,9 @@ public class ProduitService {
                         Boolean exist = Boolean.valueOf(obj.get("existe").toString());
 
                         String image = obj.get("image").toString();
+                        if(image == null){
+                        image="no-image-icon-15.png";
+                        }
                         String description = obj.get("description").toString();
                         String marque = obj.get("marque").toString();
 
