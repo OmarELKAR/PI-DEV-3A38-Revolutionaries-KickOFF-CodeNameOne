@@ -79,6 +79,7 @@ public class ProduitService {
                         String image = obj.get("image").toString();
                         String description = obj.get("description").toString();
                         String marque = obj.get("marque").toString();
+                         
 
                         produit.setId((int) id);
                         produit.setNom(nom);
@@ -88,7 +89,7 @@ public class ProduitService {
                         produit.setExist(exist);
                         produit.setImage(image);
                         produit.setRating(rating);
-
+                    
                         // insert data into ArrayList result
                         result.add(produit);
                     }

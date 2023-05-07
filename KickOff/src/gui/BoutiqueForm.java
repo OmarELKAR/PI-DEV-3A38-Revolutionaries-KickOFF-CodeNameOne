@@ -29,9 +29,11 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.plaf.Border;
+import com.codename1.ui.plaf.RoundBorder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import services.TwilioSMS;
 /**
  *
  * @author user
@@ -44,6 +46,9 @@ private Resources theme;
  ImageViewer imgv;
  String url = "http://127.0.0.1:8000/uploads/product/";
  
+ 
+ 
+ TwilioSMS sms = new TwilioSMS();
 
 public void init(Object context) {
     // use two network threads instead of one
@@ -87,8 +92,19 @@ public void start() {
            
     // Bouton pour afficher la liste des produits
     Button b = new Button("Lister produits");
+        Button smsButton = new Button("notify admin");
+        b.getAllStyles().setBorder(RoundBorder.create().rectangle(true));
+
+    b.getUnselectedStyle().setBgColor(0xFFFFFF);
+    b.getUnselectedStyle().setBgTransparency(255);
+    smsButton.getUnselectedStyle().setBgColor(0x2DB944);
+    smsButton .getUnselectedStyle().setBgTransparency(255);       
+
     f.add(b);
     
+    f.add(smsButton);
+    
+    smsButton.addActionListener((e)->{TwilioSMS.sendSMS("+21652991102", "problem with my order");});
     // Écouteur de clic sur le bouton
     ProduitService ps = new ProduitService();
     b.addActionListener((e) -> {

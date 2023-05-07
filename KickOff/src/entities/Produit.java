@@ -20,6 +20,7 @@ public class Produit {
     private String image ;
     private Double rating ;
 
+
     public void setRating(Double rating) {
         this.rating = rating;
     }
