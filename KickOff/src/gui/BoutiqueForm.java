@@ -104,7 +104,7 @@ public void start() {
     
     f.add(smsButton);
     
-    smsButton.addActionListener((e)->{TwilioSMS.sendSMS("+21652991102", "problem with my order");});
+    smsButton.addActionListener((e)->{TwilioSMS.sendSMS("+21652991102", "problem with my order user:" /*+ SessionManager.getUsername()*/);});
     // Écouteur de clic sur le bouton
     ProduitService ps = new ProduitService();
     b.addActionListener((e) -> {
@@ -130,6 +130,7 @@ public void start() {
             produits = ps.SearchProduct(tf.getText());
             
         }
+            f.add(smsButton);
        
         
         // Parcours des produits
