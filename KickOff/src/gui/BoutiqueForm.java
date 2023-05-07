@@ -84,7 +84,7 @@ public void start() {
        // Barre de recherche
     TextField tf = new TextField("", "Rechercher un produit");
     f.add(tf);
-    
+           
     // Bouton pour afficher la liste des produits
     Button b = new Button("Lister produits");
     f.add(b);
@@ -92,15 +92,27 @@ public void start() {
     // Écouteur de clic sur le bouton
     ProduitService ps = new ProduitService();
     b.addActionListener((e) -> {
-        String searchQuery = tf.getText();
 //ArrayList<Produit> produits = ps.searchProd(searchQuery);
-        
+        ArrayList<Produit> produits = new ArrayList();
         // Récupération des produits depuis la base de données
-        ArrayList<Produit> produits = ps.affichageProduits();
+        f.removeAll();
+        f.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+    f.setScrollableY(true);
+    f.setTitle("Liste des produits");
+       // Barre de recherche
+    f.add(tf);
+           
+    // Bouton pour afficher la liste des produits
+    f.add(b);
+        if (tf.getText().isEmpty())
+        {produits = ps.affichageProduits();}
+        
          // Vérification si la recherche n'est pas vide
-        if (!tf.getText().equals("")) {
+        else  {
             // Récupération des produits correspondants à la recherche
-            produits = ps.searchProd(tf.getText());
+            
+            produits = ps.SearchProduct(tf.getText());
+            
         }
        
         

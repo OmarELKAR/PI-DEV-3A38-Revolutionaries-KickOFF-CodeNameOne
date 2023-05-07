@@ -245,6 +245,64 @@ public class ProduitService {
     return prod;
 }
 
+    
+    public ArrayList<Produit> SearchProduct(String name) {
+    ArrayList<Produit> result = new ArrayList<>();
+    try {
+        req.setUrl("http://127.0.0.1:8000/product/rechercher_produit?nom="+name);
+       // NetworkManager.getInstance().addToQueueAndWait(req); // moved here
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+    
+   req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser jsonp;
+                jsonp = new JSONParser();
+
+                try {
+                    Map<String, Object> mapProduits = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+
+                    List<Map<String, Object>> listOfMaps = (List<Map<String, Object>>) mapProduits.get("root");
+
+                    for (Map<String, Object> obj : listOfMaps) {
+                        Produit produit = new Produit();
+
+                        // always use float in codename one
+                        float id = Float.parseFloat(obj.get("id").toString());
+                        String nom = obj.get("nom").toString();
+                        Double prix = Double.valueOf(obj.get("prix").toString());
+                        Double rating = Double.valueOf(obj.get("rating").toString());
+
+                        Boolean exist = Boolean.valueOf(obj.get("existe").toString());
+
+                        String image = obj.get("image").toString();
+                        String description = obj.get("description").toString();
+                        String marque = obj.get("marque").toString();
+
+                        produit.setId((int) id);
+                        produit.setNom(nom);
+                        produit.setDescription(description);
+                        produit.setMarque(marque);
+                        produit.setPrix(prix);
+                        produit.setExist(exist);
+                        produit.setImage(image);
+                        produit.setRating(rating);
+
+                        // insert data into ArrayList result
+                        result.add(produit);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req); // execution ta3 request sinon yet3ada chy dima nal9awha
+
+    return result;
+}
+
 
  
 }
