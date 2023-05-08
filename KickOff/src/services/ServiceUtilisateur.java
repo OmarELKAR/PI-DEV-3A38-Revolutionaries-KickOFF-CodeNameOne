@@ -116,10 +116,12 @@ public class ServiceUtilisateur {
                 else {
                     Map<String,Object> user= (Map<String,Object>) Response.get("User");   
                     //Session 
-                    SessionManager.setId((Double)user.get("id"));
+                    double id = (double) user.get("id");
+                    SessionManager.setId(id);
                     SessionManager.setPassowrd((String)user.get("password").toString());
                     SessionManager.setUserName((String)user.get("username").toString());
                     SessionManager.setEmail((String)user.get("email").toString());
+                    SessionManager.setPhonenumber((String)user.get("numTel"));
                 new HomeForm().show();
                    
                    

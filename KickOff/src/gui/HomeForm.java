@@ -25,6 +25,7 @@ public class HomeForm extends Form{
         getToolbar().addCommandToSideMenu("Tournoi", null, (evt5) -> {
             new TournoiForm().show();
         });
+        getToolbar().addCommandToSideMenu("Edit Account",null,(evt10)->{new EditForm().show();});
         getToolbar().addCommandToSideMenu("Logout",null,(evt3)->{
                SessionManager.pref.clearAll();
                Storage.getInstance().clearStorage();

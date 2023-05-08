@@ -45,11 +45,7 @@ public class SessionManager {
     public static void setId(Double id) {
         pref.set("id",id);//nsajl id user connecté  w na3tiha identifiant "id";
     }
-
-    public static void clearAll() {
-        Preferences.clearAll();
-    }
-
+    
     public static String getUserName() {
         return Preferences.get("username",userName);
     }
@@ -73,4 +69,8 @@ public class SessionManager {
     public static void setPassowrd(String passowrd) {
          pref.set("passowrd",passowrd);
     }
+        public static void clearAll() {
+        Preferences.clearAll();
+    }
+
 }
