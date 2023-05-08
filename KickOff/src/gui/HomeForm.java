@@ -25,6 +25,9 @@ public class HomeForm extends Form{
         getToolbar().addCommandToSideMenu("Tournoi", null, (evt5) -> {
             new TournoiForm().show();
         });
+        getToolbar().addCommandToSideMenu("Boutique", null, (evt5) -> {
+            new BoutiqueForm().start();
+        });
         getToolbar().addCommandToSideMenu("Logout",null,(evt3)->{
                SessionManager.pref.clearAll();
                Storage.getInstance().clearStorage();
@@ -32,8 +35,6 @@ public class HomeForm extends Form{
             new LoginForm().show();});
                  
         
-            getToolbar().addCommandToSideMenu("Boutique", null, (evt5) -> {
-            new BoutiqueForm().start();
-                    });
+            
     }
 }

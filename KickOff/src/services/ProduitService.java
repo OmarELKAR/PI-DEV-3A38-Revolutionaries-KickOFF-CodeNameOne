@@ -27,6 +27,7 @@ import java.util.Map;
  */
 import com.codename1.io.*;
 import com.codename1.ui.events.ActionListener;
+import entities.Matche;
 import java.io.*;
 import java.util.*;
 
@@ -38,6 +39,8 @@ public class ProduitService {
 
     // initialization connection request 
     private ConnectionRequest req;
+    
+    List<Produit> result = new ArrayList<>();
 
     public static ProduitService getInstance() {
         if(instance == null )
@@ -49,8 +52,8 @@ public class ProduitService {
         req = new ConnectionRequest();
     }
 
-    public ArrayList<Produit> affichageProduits() {
-        ArrayList<Produit> result = new ArrayList<>();
+    public List<Produit> affichageProduits() {
+        //ArrayList<Produit> result = new ArrayList<>();
 
         req.setUrl("http://127.0.0.1:8000/product/api/produits");
 
@@ -76,8 +79,8 @@ public class ProduitService {
 
                         Boolean exist = Boolean.valueOf(obj.get("existe").toString());
 
-                        String image = obj.get("image").toString();
-                        String description = obj.get("description").toString();
+                        String image = ((String) obj.get("image"));
+                        String description = ((String) obj.get("description"));
                         String marque = obj.get("marque").toString();
                          
 
@@ -89,6 +92,7 @@ public class ProduitService {
                         produit.setExist(exist);
                         produit.setImage(image);
                         produit.setRating(rating);
+                        System.out.println("iterating");
                     
                         // insert data into ArrayList result
                         result.add(produit);

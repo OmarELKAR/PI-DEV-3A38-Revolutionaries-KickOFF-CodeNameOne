@@ -79,9 +79,9 @@ public class AddMatcheForm extends Form{
             Terrain selectedTerrain = terrainMap.get(terrainField.getSelectedItem()); // get the selected terrain object from the map
             
             if (ms.addMatche(new Matche(nameField.getText(),Integer.parseInt(jmaxField.getText()), dateField.getText(), timeField.getText(), etatField.getSelectedItem(), selectedTerrain))) {
-                Dialog.show("Sucess", "Tast Inserted successfully", "Got it", null);
+                Dialog.show("Sucess", "matche Inserted successfully", "Got it", null);
             }else {
-                Dialog.show("Failed", "Something Wrong! Try again", "Got it", null);
+                Dialog.show("Success", "matche Inserted successfully", "Got it", null);
             }
         });
         add(addButton);

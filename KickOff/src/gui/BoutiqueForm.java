@@ -38,6 +38,7 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.TextField;
 import com.codename1.ui.URLImage;
@@ -47,8 +48,10 @@ import com.codename1.ui.plaf.RoundBorder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import services.TwilioSMS;
+import util.SessionManager;
 /**
  *
  * @author user
@@ -68,11 +71,14 @@ private Resources theme;
 public void init(Object context) {
     // use two network threads instead of one
     updateNetworkThreadCount(2);
+    
+
 
     theme = UIManager.initFirstTheme("/theme");
 
     // Enable Toolbar on all Forms by default
     Toolbar.setGlobalToolbar(true);
+    
 
     // Pro only feature
     Log.bindCrashProtection(true);
@@ -99,6 +105,9 @@ public void start() {
     }
     
     
+    Button back = new Button("Back");
+        back.addActionListener( e-> new HomeForm().showBack());
+    
     // Création de la page principale
     Form f = new Form();
     f.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
@@ -107,6 +116,7 @@ public void start() {
        // Barre de recherche
     TextField tf = new TextField("", "Rechercher un produit");
     f.add(tf);
+    
            
     // Bouton pour afficher la liste des produits
     Button b = new Button("Lister produits");
@@ -121,13 +131,14 @@ public void start() {
     f.add(b);
     
     f.add(smsButton);
+    f.add(back);
     
-    smsButton.addActionListener((e)->{TwilioSMS.sendSMS("+21652991102", "problem with my order user:" /*+ SessionManager.getUsername()*/);});
+    smsButton.addActionListener((e)->{TwilioSMS.sendSMS("+21652991102", "problem with my order user:" + SessionManager.getUserName());});
     // Écouteur de clic sur le bouton
     ProduitService ps = new ProduitService();
     b.addActionListener((e) -> {
 //ArrayList<Produit> produits = ps.searchProd(searchQuery);
-        ArrayList<Produit> produits = new ArrayList();
+        List<Produit> produits = new ArrayList();
         // Récupération des produits depuis la base de données
         f.removeAll();
         f.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
@@ -149,6 +160,7 @@ public void start() {
             
         }
             f.add(smsButton);
+            f.add(back);
        
         
         // Parcours des produits
