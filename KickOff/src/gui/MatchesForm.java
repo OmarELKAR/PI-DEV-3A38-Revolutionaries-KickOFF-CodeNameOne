@@ -19,15 +19,17 @@ import entities.Matche;
 import java.util.ArrayList;
 import java.util.List;
 import services.MatcheService;
+import services.TerrainService;
 
 /**
  *
  * @author omare
  */
 public class MatchesForm extends Form{
-
+    TerrainService ts = TerrainService.getInstance();
     MatcheService ms = MatcheService.getInstance();
     public MatchesForm() {
+        
         super("Matches", BoxLayout.y());
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, (evt3) -> {
             new HomeForm().showBack();
@@ -35,6 +37,7 @@ public class MatchesForm extends Form{
         getToolbar().addCommandToOverflowMenu("Logout", null, (evt4) -> {
             new LoginForm().showBack();
         });
+        //System.out.println(ts.fetchTerrain(1));
         for (Matche m : ms.fetchMatches()){
             addItem(m);
         }
@@ -53,12 +56,12 @@ public class MatchesForm extends Form{
         Label id = new Label(String.valueOf(m.getId()));
         Label name = new Label(m.getName());
         Label DateT = new Label(m.getDate() + " At " + m.getTime());
-        Label Jmax = new Label("0/" + m.getJmax());
+        //Label Jmax = new Label(m.getTerrain().getNom());
         Label Etat = new Label(m.getEtat());
         
         C1.add(name);
         C2.add(DateT);
-        C3.add(Jmax);
+        //C3.add(Jmax);
         C4.add(Etat);
         C1.add(C2);
         C1.add(C3);
@@ -69,7 +72,8 @@ public class MatchesForm extends Form{
         // Add pointer pressed listener to C1
         C1.addPointerPressedListener((e) -> {
             // Navigate to the new form here
-            new showMatcheForm((int) m.getId()).show();
+            //m.getTerrain().getAddressFromCoordinates();
+            new showMatcheForm((int) m.getId(), "Activate api").show();
         });
         // Set selected style to highlight C1 on hover
         Style matchContainerSelectedStyle = new Style(matchContainerStyle);

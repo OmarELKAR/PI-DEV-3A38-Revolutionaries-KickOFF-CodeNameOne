@@ -164,11 +164,12 @@ public class Terrain {
     ConnectionRequest request = new ConnectionRequest();
     request.setUrl(url);
     request.setUserAgent("MyApp/1.0");
-
+    
     request.addResponseListener((e) -> {
         try {
             Map<String, Object> response = new JSONParser().parseJSON(new InputStreamReader(new ByteArrayInputStream(request.getResponseData()), "UTF-8"));
             String address = (String) response.get("display_name");
+            System.out.println(address);
             adress = address;
         } catch (Exception ex) {
             System.out.println("entities.Terrain.getAddressFromCoordinates()");

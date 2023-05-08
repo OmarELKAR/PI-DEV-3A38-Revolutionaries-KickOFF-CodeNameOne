@@ -85,7 +85,7 @@ public class TerrainService {
                 t.setPrix((double) item.get("prix"));
                 t.setImgName((String) item.get("img"));
                 t.setLocalisation((String) item.get("localisation"));
-                t.getAddressFromCoordinates();
+                //t.getAddressFromCoordinates();
                 
                 terrains.add(t);
             }
