@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Abonnement {
     private int id;
-    private String player;
+    private double player;
     private String terrain;
     private float prixTot;
 
-    public Abonnement(String player, String terrain, float prixTot, String startDate, String endDate) {
+    public Abonnement(double player, String terrain, float prixTot, String startDate, String endDate) {
         this.player = player;
         this.terrain = terrain;
         this.prixTot = prixTot;
@@ -29,7 +29,7 @@ public class Abonnement {
     public Abonnement() {
     }
 
-    public Abonnement( String player, String terrain, String startDate, String endDate) {
+    public Abonnement( double player, String terrain, String startDate, String endDate) {
         this.player = player;
         this.terrain = terrain;
         this.startDate = startDate;
@@ -46,11 +46,11 @@ public class Abonnement {
 
    
 
-    public String getPlayer() {
+    public double getPlayer() {
         return player;
     }
 
-    public void setPlayer(String player) {
+    public void setPlayer(double player) {
         this.player = player;
     }
 

@@ -5,9 +5,11 @@
  */
 package gui;
 
+import com.codename1.io.Storage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
+import util.SessionManager;
 
 /**
  *
@@ -26,6 +28,9 @@ public class HomeForm extends Form{
         getToolbar().addCommandToSideMenu("Boutique", null, (evt5) -> {
             new BoutiqueForm().start();
         });
+        getToolbar().addCommandToSideMenu("Abonnement", null, (evt4) -> {
+            new TypeForm().show();
+        });
         getToolbar().addCommandToSideMenu("Logout",null,(evt3)->{
                SessionManager.pref.clearAll();
                Storage.getInstance().clearStorage();
@@ -34,8 +39,6 @@ public class HomeForm extends Form{
                  
         
             
-        getToolbar().addCommandToSideMenu("Abonnement", null, (evt4) -> {
-            new TypeForm().show();
-        });
+        
     }
 }
