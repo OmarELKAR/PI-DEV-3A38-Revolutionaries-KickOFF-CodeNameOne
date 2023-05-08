@@ -7,6 +7,7 @@ package gui;
 
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.layouts.BorderLayout;
 import entities.Type;
@@ -28,6 +29,10 @@ public class TypeForm extends Form{
 
     public TypeForm() {
         super("My List", BoxLayout.y());
+        
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, (evt3) -> {
+            new HomeForm().showBack();
+        });
 
         serviceType ST = new serviceType();
         ArrayList<Type> result = new ArrayList<>();

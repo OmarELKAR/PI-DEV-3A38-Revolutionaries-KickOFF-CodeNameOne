@@ -53,7 +53,7 @@ public class serviceAbonnement {
         req.setUrl(url);
 
         // Ajouter les arguments de la requête
-        req.addArgument("player", abonnement.getPlayer());
+        req.addArgument("player", String.valueOf(abonnement.getPlayer()));
         req.addArgument("terrain", abonnement.getTerrain());
         req.addArgument("prixTot", Float.toString(abonnement.getPrixTot()));
         req.addArgument("startDate", abonnement.getStartDate().toString());
@@ -101,7 +101,7 @@ req.setPost(false);
         req.setUrl(url);
         System.out.println("resu:"+result.getPourcentageReductin());
         // Ajouter les arguments de la requête
-        req.addArgument("player", abonnement.getPlayer());
+        req.addArgument("player", String.valueOf(abonnement.getPlayer()));
         req.addArgument("terrain", abonnement.getTerrain());
         req.addArgument("prixTot", Float.toString(abonnement.getPrixTot()-(abonnement.getPrixTot()*result.getPourcentageReductin()/100)));
         req.addArgument("startDate", abonnement.getStartDate().toString());
@@ -125,7 +125,7 @@ req.setPost(false);
 
         // Ajouter les arguments de la requête
         req.addArgument("idAbonnement", Integer.toString(abonnement.getId()));
-        req.addArgument("player", abonnement.getPlayer());
+        req.addArgument("player", String.valueOf(abonnement.getPlayer()));
         req.addArgument("terrain", abonnement.getTerrain());
         req.addArgument("startDate", abonnement.getStartDate().toString());
         req.addArgument("endDate", abonnement.getEndDate().toString());

@@ -8,6 +8,7 @@ package gui;
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
@@ -22,7 +23,9 @@ import util.SessionManager;
  * @author Nadoura kaaboura
  */
 public class AbonnementForm extends Form {
-    public AbonnementForm (int id,int price){ Form form = new Form("Attributs", BoxLayout.y());
+    public AbonnementForm (int id,int price){ 
+        
+        Form form = new Form("Attributs", BoxLayout.y());
 
 // Récupérer les attributs de l'objet Abonnement existant   
 
@@ -46,10 +49,11 @@ serviceAbonnement SA=serviceAbonnement.getInstance();
 abonnementButton.addActionListener(e -> {
     // Appeler la fonction abonnement avec les valeurs des champs de saisie
     String terrain = terrainField.getText();
-    double player = SessionManager.getId();//Baddalnie
+    String p = SessionManager.pref.get("id","id");
     String startDate = startDateField.getText();
     String endDate = endDateField.getText();
     String coupon = couponField.getText();
+    double player = Double.parseDouble(p);
     if (coupon.isEmpty()){
     Abonnement abonnement = new Abonnement (player, terrain,price,startDate,endDate);
 
@@ -68,6 +72,9 @@ abonnementButton.addActionListener(e -> {
     
 });
 
+Button back = new Button("Back");
+        back.addActionListener( e-> new HomeForm().showBack());
+
 // Ajouter le bouton à la forme
 form.add(terrainField);
 //form.add(playerField);  
@@ -75,6 +82,7 @@ form.add(startDateField);
 form.add(endDateField);
 form.add(couponField);
 form.add(abonnementButton);
+form.add(back);
 
 
 form.show();
