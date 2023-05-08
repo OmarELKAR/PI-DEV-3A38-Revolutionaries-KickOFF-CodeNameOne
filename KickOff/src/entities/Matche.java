@@ -22,7 +22,6 @@ public class Matche {
     private List<String> team2;
     private String[] team1t;
     private String[] team2t;
-    private Terrain terrain;
     
     public Matche(){
     }
@@ -45,17 +44,6 @@ public class Matche {
         this.team1 = team1;
         this.team2 = team2;
     }
-
-    public Matche(String name, double Jmax, String date, String time, String etat, Terrain terrain) {
-        this.name = name;
-        this.Jmax = Jmax;
-        this.date = date;
-        this.time = time;
-        this.etat = etat;
-        this.terrain = terrain;
-    }
-    
-    
     
 
     public double getId() {
@@ -137,16 +125,6 @@ public class Matche {
     public void setTeam2t(String[] team2t) {
         this.team2t = team2t;
     }
-
-    public Terrain getTerrain() {
-        return terrain;
-    }
-
-    public void setTerrain(Terrain terrain) {
-        this.terrain = terrain;
-    }
-    
-    
 
     
     

@@ -5,11 +5,9 @@
  */
 package gui;
 
-import com.codename1.io.Storage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
-import util.SessionManager;
 
 /**
  *
@@ -18,7 +16,7 @@ import util.SessionManager;
 public class HomeForm extends Form{
     public HomeForm() {
         super("Home", BoxLayout.xCenter());
-        add(new Label("Wellcome"));
+        add(new Label("Welcome"));
         getToolbar().addCommandToSideMenu("Matches", null, (evt2) -> {
             new MatchesForm().show();
         });
@@ -36,5 +34,8 @@ public class HomeForm extends Form{
                  
         
             
+        getToolbar().addCommandToSideMenu("Abonnement", null, (evt4) -> {
+            new TypeForm().show();
+        });
     }
 }
