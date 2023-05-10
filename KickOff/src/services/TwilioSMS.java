@@ -14,7 +14,7 @@ public class TwilioSMS {
     
 // Twilio account credentials
     private static final String ACCOUNT_SID = "AC3e373431593aeafe6eae3f9e6f983c2f";
-    private static final String AUTH_TOKEN = "60171f95c5e2c78202d8013102967e5f";
+    private static final String AUTH_TOKEN = "b27cfe1b661ff98e155ae273e24ea5cc";
 
     // Twilio phone number
     private static final String TWILIO_NUMBER = "+15673131504";

@@ -10,6 +10,8 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
+import entities.Panier;
+import java.util.ArrayList;
 import services.ServiceUtilisateur;
 
 /**
@@ -30,6 +32,8 @@ public class LoginForm extends Form {
         tf_password.setConstraint(TextField.PASSWORD);
         addAll(tf_login, tf_password, loginBtn,createBtn);
         loginBtn.addActionListener((evt) -> {
+            Panier.setProduits(new ArrayList<>());
+            Panier.setToatl(0.0);
            su.signin(tf_login.getText(), tf_password.getText());
         });
         createBtn.addActionListener((evt)->{

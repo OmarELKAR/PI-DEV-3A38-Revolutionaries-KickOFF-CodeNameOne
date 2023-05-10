@@ -45,6 +45,7 @@ import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.RoundBorder;
+import entities.Panier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -108,6 +109,9 @@ public void start() {
     Button back = new Button("Back");
         back.addActionListener( e-> new HomeForm().showBack());
     
+    Button panier = new Button("Panier");
+    panier.addActionListener( e -> new panierForm().show());
+    
     // Création de la page principale
     Form f = new Form();
     f.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
@@ -132,6 +136,7 @@ public void start() {
     
     f.add(smsButton);
     f.add(back);
+    f.add(panier);
     
     smsButton.addActionListener((e)->{TwilioSMS.sendSMS("+21652991102", "problem with my order user:" + SessionManager.getUserName());});
     // Écouteur de clic sur le bouton
@@ -161,6 +166,7 @@ public void start() {
         }
             f.add(smsButton);
             f.add(back);
+            f.add(panier);
        
         
         // Parcours des produits
@@ -220,12 +226,21 @@ public void start() {
         lexist.getStyle().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM)); // Police en gras
         details.add(lexist);
         
+        Button addPanier = new Button("Ajouter panier");
+        addPanier.addActionListener((event -> {
+            Panier.ajouterProduit(p);
+            Panier.addTotal(p.getPrix());
+            Dialog.show("Success.","Produit ajouté avec succées","OK",null);
+        }));
+        
 
         // Rating du produit
             Double rating = p.getRating();
 Label lrating = new Label("Rating: " + rating + "/6");
 lrating.getStyle().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM));
 details.add(lrating);
+details.add(addPanier);
+
 
 
        
